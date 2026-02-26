@@ -446,7 +446,7 @@ export default function DiscoverScreen() {
                                 <div className="absolute top-4 left-4 z-10">
                                     <span className="bg-blue text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">$$</span>
                                 </div>
-                                <div className="absolute inset-0 p-4 flex flex-col justify-center">
+                                <div className="absolute inset-0 p-4 pt-10 flex flex-col justify-start">
                                     <h3 className="text-2xl text-white font-bold mb-2">Space Center Houston</h3>
                                     <p className="text-sm text-gray">Journey to the stars at the home of NASA Johnson Space Center.</p>
                                 </div>
@@ -460,7 +460,7 @@ export default function DiscoverScreen() {
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             {thingsToDo.map((thing, idx) => (
                                 <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                    <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-28 bg-[#1a1a1a]' : 'h-32'}`}>
+                                    <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
                                         <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${thing.title === 'Museum District' ? 'object-contain' : 'object-cover'}`} />
                                     </div>
                                     <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
