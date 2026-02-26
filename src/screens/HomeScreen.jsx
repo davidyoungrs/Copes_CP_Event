@@ -15,6 +15,7 @@ export default function HomeScreen() {
                         <img src="/copes-vulcan-hero.svg" alt="Copes-Vulcan" style={{ height: '40px' }} />
                     </div>
                     <h1 className="hero-title drop-shadow-xl text-shadow">
+                        Synchronized Success <br />
                         Celeros Channel Partner <br />
                         <span className="text-blue drop-shadow-md">Event 2026</span>
                     </h1>
@@ -31,7 +32,7 @@ export default function HomeScreen() {
                     </div>
 
                     <p className="hero-desc mt-6 font-bold drop-shadow-xl text-light-fixed text-shadow-strong whitespace-pre-line">
-                        Synchronized Success {"\n"} The Power of Connection: Defining the Future of Flow Control
+                        The Power of Connection: Defining the Future of Flow Control
                     </p>
 
                     <div className="hero-actions flex flex-col w-full gap-4 mt-8">
