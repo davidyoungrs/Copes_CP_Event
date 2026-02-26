@@ -364,6 +364,10 @@ button {
   color: var(--text-primary);
 }
 
+.text-light-fixed {
+  color: #ffffff !important;
+}
+
 .bg-surface-hover {
   background-color: var(--surface-hover);
 }

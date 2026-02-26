@@ -30,8 +30,8 @@ export default function HomeScreen() {
                         </div>
                     </div>
 
-                    <p className="hero-desc mt-6 font-bold drop-shadow-xl text-white text-shadow-strong">
-                        Connecting global visionaries in flow technology to drive excellence, innovation, and sustainable infrastructure solutions.
+                    <p className="hero-desc mt-6 font-bold drop-shadow-xl text-light-fixed text-shadow-strong whitespace-pre-line">
+                        Synchronized Success {"\n"} The Power of Connection: Defining the Future of Flow Control
                     </p>
 
                     <div className="hero-actions flex flex-col w-full gap-4 mt-8">
