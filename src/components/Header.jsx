@@ -36,9 +36,7 @@ export default function Header() {
     if (path === '/discover') {
         return (
             <header className="app-header discover-header flex justify-between items-center w-full">
-                <button onClick={() => navigate(-1)} className="back-btn">
-                    <ArrowLeft size={24} color="var(--text-primary)" />
-                </button>
+                <div style={{ width: '40px' }}></div> {/* Placeholder for centering */}
                 <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Discover Houston</h1>
                 <button className="search-btn">
                     <Search size={24} color="var(--text-primary)" />
