@@ -176,7 +176,7 @@ export default function DiscoverScreen() {
             title: 'Museum District',
             desc: '19 world-class museums',
             price: 'Free',
-            image: 'https://images.unsplash.com/photo-1554902843-260acd0993f8?q=80&w=300&auto=format&fit=crop',
+            image: 'https://images.pexels.com/photos/4258559/pexels-photo-4258559.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://houstonmuseumdistrict.org/'
         },
         {
@@ -232,7 +232,7 @@ export default function DiscoverScreen() {
             title: 'Buffalo Bayou Park Cistern',
             desc: 'Underground historic water reservoir',
             price: '$',
-            image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=300&auto=format&fit=crop',
+            image: 'https://images.unsplash.com/photo-1544033527-b192daee1f5b?q=80&w=300&auto=format&fit=crop',
             url: 'https://buffalobayou.org/visit/destination/the-cistern/'
         }
     ];
@@ -286,7 +286,7 @@ export default function DiscoverScreen() {
         {
             title: 'The Galleria',
             desc: "Texas' largest mall with 400+ stores and an ice rink.",
-            image: 'https://images.unsplash.com/photo-1701233605035-74b7a05d78e6?auto=format&fit=crop&q=80&w=300',
+            image: 'https://images.pexels.com/photos/12365478/pexels-photo-12365478.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.simon.com/mall/the-galleria'
         },
         {
@@ -440,8 +440,8 @@ export default function DiscoverScreen() {
                         </div>
 
                         <a href="https://spacecenter.org/" target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
-                            <div className="must-see-card relative h-48 rounded-xl overflow-hidden mb-8 group">
-                                <img src="https://images.unsplash.com/photo-1630650943007-82a174548ad4?q=80&w=600&auto=format&fit=crop" alt="Space Center" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                            <div className="must-see-card relative h-40 rounded-xl overflow-hidden mb-8 group bg-black">
+                                <img src="/space shuttle.jpg" alt="Space Center" className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
                                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-full opacity-60"></div>
                                 <div className="absolute top-4 left-4 z-10">
                                     <span className="bg-blue text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">$$</span>
@@ -460,8 +460,8 @@ export default function DiscoverScreen() {
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             {thingsToDo.map((thing, idx) => (
                                 <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                    <div className="h-32 rounded-xl overflow-hidden mb-2">
-                                        <img src={thing.image} alt={thing.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                    <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-28 bg-[#1a1a1a]' : 'h-32'}`}>
+                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${thing.title === 'Museum District' ? 'object-contain' : 'object-cover'}`} />
                                     </div>
                                     <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
                                     <p className="text-xs text-gray">{thing.desc}</p>
