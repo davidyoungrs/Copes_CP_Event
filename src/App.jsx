@@ -16,13 +16,6 @@ function App() {
             <Route path="/home" element={<HomeScreen />} />
             <Route path="/schedule" element={<ScheduleScreen />} />
             <Route path="/discover" element={<DiscoverScreen />} />
-            {/* Fallback for unbuilt screens like Profile */}
-            <Route path="/profile" element={
-              <div style={{ padding: '2rem', textAlign: 'center' }}>
-                <h2>Profile Concept</h2>
-                <p style={{ color: 'var(--text-secondary)' }}>Coming soon...</p>
-              </div>
-            } />
           </Routes>
         </main>
         <BottomNav />

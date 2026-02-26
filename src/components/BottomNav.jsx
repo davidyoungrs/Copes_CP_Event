@@ -8,8 +8,7 @@ export default function BottomNav() {
     const navItems = [
         { id: 'home', label: 'Home', icon: Home, path: '/home' },
         { id: 'schedule', label: 'Schedule', icon: Calendar, path: '/schedule' },
-        { id: 'discover', label: 'Discover', icon: Map, path: '/discover' },
-        { id: 'profile', label: 'Profile', icon: User, path: '/profile' }
+        { id: 'discover', label: 'Discover', icon: Map, path: '/discover' }
     ];
 
     return (
