@@ -218,7 +218,7 @@ export default function DiscoverScreen() {
             title: 'The Galleria',
             desc: 'Premier shopping & ice skating rink',
             price: 'Free',
-            image: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=300&auto=format&fit=crop',
+            image: '/galleria.png',
             url: 'https://www.simon.com/mall/the-galleria'
         },
         {
@@ -286,7 +286,7 @@ export default function DiscoverScreen() {
         {
             title: 'The Galleria',
             desc: "Texas' largest mall with 400+ stores and an ice rink.",
-            image: 'https://images.pexels.com/photos/12365478/pexels-photo-12365478.jpeg?auto=compress&cs=tinysrgb&w=300',
+            image: '/galleria.png',
             url: 'https://www.simon.com/mall/the-galleria'
         },
         {
@@ -462,7 +462,7 @@ export default function DiscoverScreen() {
                             {thingsToDo.map((thing, idx) => (
                                 <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
                                     <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
-                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'Downtown Aquarium'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
+                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'The Galleria', 'Downtown Aquarium'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
                                     </div>
                                     <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
                                     <p className="text-xs text-gray">{thing.desc}</p>
@@ -483,7 +483,7 @@ export default function DiscoverScreen() {
                                 <a key={idx} href={shop.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
                                     <div className="place-card">
                                         <div className="relative h-32 rounded-xl overflow-hidden mb-2 group">
-                                            <img src={shop.image} alt={shop.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${shop.title === 'The Galleria' ? 'object-contain' : 'object-cover'}`} />
                                             <button className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black bg-opacity-50 flex items-center justify-center z-10 pointer-events-none">
                                                 <Heart size={14} color="white" fill="none" />
                                             </button>
@@ -495,50 +495,55 @@ export default function DiscoverScreen() {
                             ))}
                         </div>
                     </>
-                )}
+                )
+                }
 
                 {/* Nightlife */}
-                {(activeTab === 'All' || activeTab === 'Nightlife') && (
-                    <>
-                        <div className="mt-8 mb-4">
-                            <h2 className="text-xl font-bold text-white m-0">Nightlife Spots</h2>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                            {nightlife.map((spot, idx) => (
-                                <a key={idx} href={spot.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                    <div className="h-32 rounded-xl overflow-hidden mb-2 relative">
-                                        <img src={spot.image} alt={spot.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                                        <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-blue text-[10px] font-bold px-1.5 py-0.5 rounded">
-                                            {spot.price}
+                {
+                    (activeTab === 'All' || activeTab === 'Nightlife') && (
+                        <>
+                            <div className="mt-8 mb-4">
+                                <h2 className="text-xl font-bold text-white m-0">Nightlife Spots</h2>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                {nightlife.map((spot, idx) => (
+                                    <a key={idx} href={spot.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
+                                        <div className="h-32 rounded-xl overflow-hidden mb-2 relative">
+                                            <img src={spot.image} alt={spot.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                            <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-blue text-[10px] font-bold px-1.5 py-0.5 rounded">
+                                                {spot.price}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <h4 className="text-sm text-white font-semibold leading-tight mb-1">{spot.title}</h4>
-                                    <p className="text-xs text-gray">{spot.desc}</p>
-                                </a>
-                            ))}
-                        </div>
-                    </>
-                )}
+                                        <h4 className="text-sm text-white font-semibold leading-tight mb-1">{spot.title}</h4>
+                                        <p className="text-xs text-gray">{spot.desc}</p>
+                                    </a>
+                                ))}
+                            </div>
+                        </>
+                    )
+                }
 
                 {/* Nearby Attractions */}
-                {activeTab === 'All' && (
-                    <>
-                        <div className="mt-8 mb-4">
-                            <h2 className="text-xl font-bold text-white m-0">Nearby Attractions</h2>
-                        </div>
+                {
+                    activeTab === 'All' && (
+                        <>
+                            <div className="mt-8 mb-4">
+                                <h2 className="text-xl font-bold text-white m-0">Nearby Attractions</h2>
+                            </div>
 
-                        <div className="map-card relative h-48 rounded-xl overflow-hidden mb-6 flex items-center justify-center">
-                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop" alt="Map Placeholder" className="w-full h-full object-cover opacity-60" />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-20"></div>
-                            <button className="absolute btn-primary flex items-center gap-2">
-                                <MapIcon size={18} color="white" />
-                                Open Interactive Map
-                            </button>
-                        </div>
-                    </>
-                )}
+                            <div className="map-card relative h-48 rounded-xl overflow-hidden mb-6 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop" alt="Map Placeholder" className="w-full h-full object-cover opacity-60" />
+                                <div className="absolute inset-0 bg-blue-900 bg-opacity-20"></div>
+                                <button className="absolute btn-primary flex items-center gap-2">
+                                    <MapIcon size={18} color="white" />
+                                    Open Interactive Map
+                                </button>
+                            </div>
+                        </>
+                    )
+                }
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
