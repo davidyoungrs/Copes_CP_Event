@@ -183,7 +183,7 @@ export default function DiscoverScreen() {
             title: 'Hermann Park',
             desc: 'Gardens & outdoor recreation',
             price: 'Free',
-            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=300&auto=format&fit=crop',
+            image: '/hermann-park.png',
             url: 'https://www.hermannpark.org/'
         },
         {
