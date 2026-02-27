@@ -1,98 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Calendar, MapPin } from 'lucide-react';
+import { loadScheduleData } from '../utils/dataLoader';
 
 export default function ScheduleScreen() {
     const [activeTab, setActiveTab] = useState(1);
+    const [scheduleData, setScheduleData] = useState(null);
 
-    const commonSlots = [
-        {
-            time: '09:00\nAM',
-            title: 'Welcome & Morning Keynote',
-            location: 'Grand Ballroom',
-            duration: '60 mins',
-            presenter: 'CFT Leadership',
-            avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop',
-            active: false
-        },
-        {
-            time: '10:00\nAM',
-            title: 'Morning Break',
-            location: 'Foyer',
-            duration: '20 mins',
-            presenter: '',
-            avatar: '',
-            isBreak: true
-        },
-        {
-            time: '10:20\nAM',
-            title: 'Strategic Flow Control Session',
-            location: 'Grand Ballroom',
-            duration: '65 mins',
-            presenter: 'CFT Presenter',
-            avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop',
-            active: false
-        },
-        {
-            time: '11:25\nAM',
-            title: 'Channel Partner Excellence',
-            location: 'Breakout Room A',
-            duration: '65 mins',
-            presenter: 'CFT Presenter',
-            avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop',
-            active: false
-        },
-        {
-            time: '12:30\nPM',
-            title: 'Networking Lunch',
-            location: 'Main Dining Hall',
-            duration: '60 mins',
-            presenter: '',
-            avatar: '',
-            isBreak: true
-        },
-        {
-            time: '01:30\nPM',
-            title: 'Afternoon Technical Deep-Dive',
-            location: 'Grand Ballroom',
-            duration: '60 mins',
-            presenter: 'CFT Presenter',
-            avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100&auto=format&fit=crop',
-            active: false
-        },
-        {
-            time: '02:30\nPM',
-            title: 'Afternoon Break',
-            location: 'Foyer',
-            duration: '20 mins',
-            presenter: '',
-            avatar: '',
-            isBreak: true
-        },
-        {
-            time: '02:50\nPM',
-            title: 'Future Innovations Panel',
-            location: 'Grand Ballroom',
-            duration: '60 mins',
-            presenter: 'CFT Presenter',
-            avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=100&auto=format&fit=crop',
-            active: false
-        },
-        {
-            time: '03:50\nPM',
-            title: 'Daily Wrap-up',
-            location: 'Grand Ballroom',
-            duration: '10 mins',
-            presenter: 'CFT Leadership',
-            avatar: '',
-            active: false
-        }
-    ];
-
-    const scheduleByDay = {
-        1: commonSlots.map(item => ({ ...item, day: 1 })),
-        2: commonSlots.map(item => ({ ...item, day: 2, title: item.title.replace('Morning Keynote', 'Industry Trends') })),
-        3: commonSlots.map(item => ({ ...item, day: 3, title: item.title.replace('Morning Keynote', 'Closing Strategy') }))
-    };
+    useEffect(() => {
+        loadScheduleData().then(data => {
+            setScheduleData(data);
+        }).catch(err => {
+            console.error("Failed to load schedule:", err);
+        });
+    }, []);
 
     const presenters = Array.from({ length: 12 }, (_, i) => ({
         id: i + 1,
@@ -122,6 +42,9 @@ export default function ScheduleScreen() {
         avatar: placeholderAvatars[idx % placeholderAvatars.length]
     }));
 
+    // If data isn't loaded yet, we render a skeleton or the static parts to keep it "invisible"
+    const currentDaySchedule = scheduleData ? scheduleData[activeTab] || [] : [];
+
     return (
         <div className="schedule-screen pt-header">
             {/* Day Tabs */}
@@ -150,7 +73,7 @@ export default function ScheduleScreen() {
                 </div>
 
                 <div className="schedule-list flex flex-col gap-4">
-                    {scheduleByDay[activeTab].map((item, idx) => (
+                    {currentDaySchedule.map((item, idx) => (
                         <div key={idx} className={`schedule-card flex gap-4 p-4 ${item.isBreak ? 'opacity-80 border-dashed border-surface-hover' : ''}`}>
                             <div className={`time-pill flex flex-col items-center justify-center text-center ${item.active ? 'active' : ''}`}>
                                 <span className="font-medium text-xs leading-tight whitespace-pre-line">{item.time}</span>
