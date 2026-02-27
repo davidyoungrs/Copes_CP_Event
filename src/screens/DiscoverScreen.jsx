@@ -190,7 +190,7 @@ export default function DiscoverScreen() {
             title: 'Downtown Aquarium',
             desc: 'Dining & marine discovery',
             price: '$$',
-            image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=300&auto=format&fit=crop',
+            image: '/downtown-aquarium.png',
             url: 'https://www.aquariumrestaurants.com/downtownaquariumhouston/'
         },
         {
@@ -462,7 +462,7 @@ export default function DiscoverScreen() {
                             {thingsToDo.map((thing, idx) => (
                                 <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
                                     <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
-                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${thing.title === 'Museum District' ? 'object-contain' : 'object-cover'}`} />
+                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'Downtown Aquarium'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
                                     </div>
                                     <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
                                     <p className="text-xs text-gray">{thing.desc}</p>
