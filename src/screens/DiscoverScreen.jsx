@@ -292,7 +292,7 @@ export default function DiscoverScreen() {
         {
             title: 'Rice Village',
             desc: 'Walkable district with eclectic boutiques and dining.',
-            image: 'https://images.unsplash.com/photo-1653923609711-7f2ec5115451?auto=format&fit=crop&q=80&w=300',
+            image: '/rice-village.png',
             url: 'https://ricevillagedistrict.com/'
         },
         {
