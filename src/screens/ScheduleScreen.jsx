@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Calendar, MapPin } from 'lucide-react';
-import { loadScheduleData } from '../utils/dataLoader';
+import { loadScheduleData, loadPresentersData } from '../utils/dataLoader';
 
 export default function ScheduleScreen() {
     const [activeTab, setActiveTab] = useState(1);
     const [scheduleData, setScheduleData] = useState(null);
+    const [presentersData, setPresentersData] = useState([]);
 
     useEffect(() => {
         loadScheduleData().then(data => {
@@ -12,35 +13,16 @@ export default function ScheduleScreen() {
         }).catch(err => {
             console.error("Failed to load schedule:", err);
         });
+
+        loadPresentersData().then(data => {
+            setPresentersData(data);
+        }).catch(err => {
+            console.error("Failed to load presenters:", err);
+        });
     }, []);
 
-    const presenters = Array.from({ length: 12 }, (_, i) => ({
-        id: i + 1,
-        name: `CFT Presenter ${i + 1}`,
-        role: 'Celeros Flow Technology',
-        avatar: `https://images.unsplash.com/photo-${1500000000000 + i}?q=80&w=200&auto=format&fit=crop` || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
-    }));
-
-    // Better placeholder strategy for avatars
-    const placeholderAvatars = [
-        'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
-    ];
-
-    const finalPresenters = presenters.map((p, idx) => ({
-        ...p,
-        avatar: placeholderAvatars[idx % placeholderAvatars.length]
-    }));
+    const finalPresenters = presentersData.filter(p => !p.isSpotlight);
+    const spotlightPresenter = presentersData.find(p => p.isSpotlight);
 
     // If data isn't loaded yet, we render a skeleton or the static parts to keep it "invisible"
     const currentDaySchedule = scheduleData ? scheduleData[activeTab] || [] : [];
@@ -126,16 +108,18 @@ export default function ScheduleScreen() {
                 </div>
 
                 {/* Featured Presenter Spotlight */}
-                <div className="spotlight-card flex gap-4 p-5 mt-4 mb-4">
-                    <img src={placeholderAvatars[0]} alt="Featured Presenter" className="w-16 h-16 rounded-full object-cover" />
-                    <div>
-                        <h3 className="text-lg text-white font-semibold">Marcus Thorne</h3>
-                        <p className="text-xs text-blue font-semibold tracking-wider uppercase mt-1">LEAD PRESENTER @ CFT</p>
-                        <p className="text-sm text-gray mt-2 leading-relaxed">
-                            Leading the Future of Flow Control with innovative solutions and global channel partner excellence.
-                        </p>
+                {spotlightPresenter && (
+                    <div className="spotlight-card flex gap-4 p-5 mt-4 mb-4">
+                        <img src={spotlightPresenter.avatar} alt={spotlightPresenter.name} className="w-16 h-16 rounded-full object-cover" />
+                        <div>
+                            <h3 className="text-lg text-white font-semibold">{spotlightPresenter.name}</h3>
+                            <p className="text-xs text-blue font-semibold tracking-wider uppercase mt-1">{spotlightPresenter.role}</p>
+                            <p className="text-sm text-gray mt-2 leading-relaxed">
+                                {spotlightPresenter.bio}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

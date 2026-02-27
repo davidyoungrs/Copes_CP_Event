@@ -32,7 +32,34 @@ export const loadScheduleData = async () => {
                 resolve(grouped);
             },
             error: (error) => {
-                console.error("Error parsing CSV:", error);
+                console.error("Error parsing schedule CSV:", error);
+                reject(error);
+            }
+        });
+    });
+};
+
+export const loadPresentersData = async () => {
+    const source = CONFIG.PRESENTERS_SOURCE_URL || CONFIG.LOCAL_PRESENTERS_PATH;
+
+    return new Promise((resolve, reject) => {
+        Papa.parse(source, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: (results) => {
+                const presenters = results.data.map((item, idx) => ({
+                    id: idx + 1,
+                    name: item.Name,
+                    role: item.Role,
+                    avatar: item.Avatar,
+                    bio: item.Bio,
+                    isSpotlight: item.IsSpotlight === 'TRUE' || item.IsSpotlight === 'true'
+                }));
+                resolve(presenters);
+            },
+            error: (error) => {
+                console.error("Error parsing presenters CSV:", error);
                 reject(error);
             }
         });

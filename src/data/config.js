@@ -4,5 +4,7 @@ export const CONFIG = {
     // 2. Select "Link" and choose the specific sheet and "Comma-separated values (.csv)"
     // 3. Paste the URL here. If empty, local /data/schedule.csv will be used.
     SCHEDULE_SOURCE_URL: '',
-    LOCAL_SCHEDULE_PATH: '/data/schedule.csv'
+    LOCAL_SCHEDULE_PATH: '/data/schedule.csv',
+    PRESENTERS_SOURCE_URL: '',
+    LOCAL_PRESENTERS_PATH: '/data/presenters.csv'
 };
