@@ -9,9 +9,7 @@ export default function Header() {
     if (path === '/home') {
         return (
             <header className="app-header home-header flex justify-between items-center w-full">
-                <div className="logo flex items-center gap-2">
-                    <img src="/celeros.svg" alt="Celeros FT" style={{ height: '24px' }} />
-                </div>
+                <div style={{ width: '24px' }}></div> {/* Spacer for alignment */}
                 <div className="actions flex items-center gap-4">
                     <Bell size={24} color="var(--text-secondary)" />
                     <div className="user-avatar flex justify-center items-center" style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #2D88FF' }}>
@@ -25,9 +23,7 @@ export default function Header() {
     if (path === '/schedule') {
         return (
             <header className="app-header schedule-header flex justify-between items-center w-full">
-                <div className="flex items-center gap-2">
-                    <img src="/celeros.svg" alt="Celeros FT Event" style={{ height: '24px' }} />
-                </div>
+                <div style={{ width: '24px' }}></div> {/* Spacer for alignment */}
                 <Bell size={24} color="var(--text-secondary)" />
             </header>
         );

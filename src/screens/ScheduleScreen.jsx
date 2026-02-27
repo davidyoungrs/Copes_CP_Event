@@ -129,7 +129,10 @@ export default function ScheduleScreen() {
                 {[1, 2, 3].map((day) => (
                     <button
                         key={day}
-                        onClick={() => setActiveTab(day)}
+                        onClick={() => {
+                            setActiveTab(day);
+                            window.scrollTo(0, 0);
+                        }}
                         className={`day-tab flex-1 py-3 text-center transition-all ${activeTab === day ? 'active' : ''}`}
                     >
                         <span className={`block font-medium ${activeTab === day ? 'text-white' : 'text-gray'}`}>Day {day}</span>
@@ -184,10 +187,9 @@ export default function ScheduleScreen() {
                     ))}
                 </div>
 
-                {/* Featured Presenters */}
+                {/* Presenters */}
                 <div className="flex justify-between items-center mt-8 mb-4">
-                    <h2 className="section-title m-0">Featured Presenters</h2>
-                    <button className="text-blue text-sm">View All</button>
+                    <h2 className="section-title m-0">Presenters</h2>
                 </div>
 
                 <div className="speakers-horizontal-list flex gap-4 overflow-x-auto pb-4 scrollbar-hide">

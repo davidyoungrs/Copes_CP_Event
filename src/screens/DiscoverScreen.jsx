@@ -363,6 +363,7 @@ export default function DiscoverScreen() {
                         onClick={() => {
                             setActiveTab(tab);
                             if (tab !== 'All') setViewAllEat(false);
+                            window.scrollTo(0, 0);
                         }}
                         className={`flex-shrink-0 text-sm font-medium pb-2 ${activeTab === tab ? 'text-blue border-b-2 border-blue' : 'text-gray'}`}
                     >
