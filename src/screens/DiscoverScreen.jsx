@@ -321,7 +321,7 @@ export default function DiscoverScreen() {
         {
             title: 'Katy Mills',
             desc: 'Massive indoor outlet mall with 175+ value stores.',
-            image: 'https://images.unsplash.com/photo-1653923612765-74955b8e944b?auto=format&fit=crop&q=80&w=300',
+            image: '/katymills.jpg',
             url: 'https://www.simon.com/mall/katy-mills'
         }
     ];
@@ -460,7 +460,7 @@ export default function DiscoverScreen() {
                                 <a key={idx} href={shop.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
                                     <div className="place-card">
                                         <div className="relative h-32 rounded-xl overflow-hidden mb-2 group">
-                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['The Galleria', 'River Oaks District'].includes(shop.title) ? 'object-contain' : 'object-cover'}`} />
+                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['The Galleria', 'River Oaks District', 'Katy Mills'].includes(shop.title) ? 'object-contain' : 'object-cover'}`} />
 
                                         </div>
                                         <h3 className="text-sm text-white font-semibold leading-tight line-clamp-1 mb-1">{shop.title}</h3>

@@ -74,10 +74,7 @@ export default function ScheduleScreen() {
                                         <MapPin size={14} className="text-blue" />
                                         <span>{item.location}</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                        <span className="w-1 h-1 rounded-full bg-gray"></span>
-                                        <span>{item.duration}</span>
-                                    </div>
+
                                 </div>
 
                                 {item.presenter && (
