@@ -197,7 +197,7 @@ export default function DiscoverScreen() {
             title: 'Buffalo Bayou Park',
             desc: 'Hiking trails & city views',
             price: 'Free',
-            image: 'https://images.unsplash.com/photo-1512411516223-9993309a44c7?q=80&w=300&auto=format&fit=crop',
+            image: '/buffalo-bayou.png',
             url: 'https://buffalobayou.org/'
         },
         {
@@ -225,15 +225,8 @@ export default function DiscoverScreen() {
             title: 'Museum of Fine Arts',
             desc: 'Expansive collection of global art',
             price: '$$',
-            image: 'https://images.unsplash.com/photo-1563200022-7934789547d8?q=80&w=300&auto=format&fit=crop',
+            image: '/mfah.jpg',
             url: 'https://www.mfah.org/'
-        },
-        {
-            title: 'Buffalo Bayou Park Cistern',
-            desc: 'Underground historic water reservoir',
-            price: '$',
-            image: 'https://images.unsplash.com/photo-1544033527-b192daee1f5b?q=80&w=300&auto=format&fit=crop',
-            url: 'https://buffalobayou.org/visit/destination/the-cistern/'
         }
     ];
 
@@ -298,7 +291,7 @@ export default function DiscoverScreen() {
         {
             title: 'River Oaks District',
             desc: 'Ultra-luxury open-air shopping and global brands.',
-            image: 'https://images.unsplash.com/photo-1681281154239-a5c633df951d?auto=format&fit=crop&q=80&w=300',
+            image: '/river-oaks.png',
             url: 'https://www.riveroaksdistrict.com/'
         },
         {
@@ -306,18 +299,6 @@ export default function DiscoverScreen() {
             desc: 'Upscale boutiques and national retailers in River Oaks.',
             image: 'https://images.unsplash.com/photo-1692428572326-66edcffafca8?auto=format&fit=crop&q=80&w=300',
             url: 'https://www.highlandvillage.com/'
-        },
-        {
-            title: 'Historic Heights (19th St)',
-            desc: 'Vintage finds, quirky shops, and local art galleries.',
-            image: 'https://images.unsplash.com/photo-1612076814508-61c469219d96?auto=format&fit=crop&q=80&w=300',
-            url: 'https://19thstreetintheheights.com/'
-        },
-        {
-            title: 'Uptown Park',
-            desc: 'European-style open-air center with bespoke boutiques.',
-            image: 'https://images.unsplash.com/photo-1727914581811-bf89e9037291?auto=format&fit=crop&q=80&w=300',
-            url: 'https://uptownparkhouston.com/'
         },
         {
             title: 'Houston Premium Outlets',
@@ -391,9 +372,7 @@ export default function DiscoverScreen() {
                                             <a href={place.url || `https://www.google.com/search?q=${encodeURIComponent(place.title + " restaurant Houston")}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
                                                 <img src={place.image} alt={place.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                             </a>
-                                            <button className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black bg-opacity-50 flex items-center justify-center z-10 pointer-events-none">
-                                                <Heart size={14} color="white" fill="none" />
-                                            </button>
+
                                         </div>
                                         <div className="flex justify-between items-start mb-1">
                                             <h3 className="text-sm text-white font-semibold leading-tight line-clamp-1">{place.title}</h3>
@@ -414,9 +393,7 @@ export default function DiscoverScreen() {
                                             <a href={place.url || `https://www.google.com/search?q=${encodeURIComponent(place.title + " restaurant Houston")}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
                                                 <img src={place.image} alt={place.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                             </a>
-                                            <button className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 flex items-center justify-center z-10 pointer-events-none">
-                                                <Heart size={16} color="white" fill={idx === 0 ? "white" : "none"} />
-                                            </button>
+
                                         </div>
                                         <div className="flex justify-between items-start">
                                             <h3 className="text-base text-white font-semibold">{place.title}</h3>
@@ -461,8 +438,8 @@ export default function DiscoverScreen() {
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             {thingsToDo.map((thing, idx) => (
                                 <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                    <div className={`rounded-xl overflow-hidden mb-2 ${thing.title === 'Museum District' ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
-                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'The Galleria', 'Downtown Aquarium'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
+                                    <div className={`rounded-xl overflow-hidden mb-2 ${['Museum District', 'Buffalo Bayou Park', 'Houston Museum of Natural Science', 'Museum of Fine Arts'].includes(thing.title) ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
+                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'The Galleria', 'Downtown Aquarium', 'Buffalo Bayou Park', 'Houston Museum of Natural Science', 'Museum of Fine Arts'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
                                     </div>
                                     <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
                                     <p className="text-xs text-gray">{thing.desc}</p>
@@ -483,10 +460,8 @@ export default function DiscoverScreen() {
                                 <a key={idx} href={shop.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
                                     <div className="place-card">
                                         <div className="relative h-32 rounded-xl overflow-hidden mb-2 group">
-                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${shop.title === 'The Galleria' ? 'object-contain' : 'object-cover'}`} />
-                                            <button className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black bg-opacity-50 flex items-center justify-center z-10 pointer-events-none">
-                                                <Heart size={14} color="white" fill="none" />
-                                            </button>
+                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['The Galleria', 'River Oaks District'].includes(shop.title) ? 'object-contain' : 'object-cover'}`} />
+
                                         </div>
                                         <h3 className="text-sm text-white font-semibold leading-tight line-clamp-1 mb-1">{shop.title}</h3>
                                         <p className="text-xs text-gray line-clamp-2">{shop.desc}</p>
@@ -509,7 +484,7 @@ export default function DiscoverScreen() {
                                 {nightlife.map((spot, idx) => (
                                     <a key={idx} href={spot.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
                                         <div className="h-32 rounded-xl overflow-hidden mb-2 relative">
-                                            <img src={spot.image} alt={spot.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                            <img src={spot.image} alt={spot.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${spot.title.includes('Museum of Natural Science') ? 'object-contain bg-surface-hover' : 'object-cover'}`} />
                                             <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-blue text-[10px] font-bold px-1.5 py-0.5 rounded">
                                                 {spot.price}
                                             </div>

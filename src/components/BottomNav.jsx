@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Home, Calendar, Map, User } from 'lucide-react';
+import { Home, Calendar, Map, Info } from 'lucide-react';
 
 export default function BottomNav() {
     const location = useLocation();
@@ -8,7 +8,8 @@ export default function BottomNav() {
     const navItems = [
         { id: 'home', label: 'Home', icon: Home, path: '/home' },
         { id: 'schedule', label: 'Schedule', icon: Calendar, path: '/schedule' },
-        { id: 'discover', label: 'Discover', icon: Map, path: '/discover' }
+        { id: 'discover', label: 'Discover', icon: Map, path: '/discover' },
+        { id: 'info', label: 'Info', icon: Info, path: '/info' }
     ];
 
     return (

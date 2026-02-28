@@ -4,6 +4,7 @@ import BottomNav from './components/BottomNav';
 import HomeScreen from './screens/HomeScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import DiscoverScreen from './screens/DiscoverScreen';
+import InfoScreen from './screens/InfoScreen';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/home" element={<HomeScreen />} />
             <Route path="/schedule" element={<ScheduleScreen />} />
             <Route path="/discover" element={<DiscoverScreen />} />
+            <Route path="/info" element={<InfoScreen />} />
           </Routes>
         </main>
         <BottomNav />

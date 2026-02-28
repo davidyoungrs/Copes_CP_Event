@@ -51,7 +51,6 @@ export default function ScheduleScreen() {
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="section-title m-0">Schedule</h2>
-                    <button className="text-blue text-sm">View Map</button>
                 </div>
 
                 <div className="schedule-list flex flex-col gap-4">

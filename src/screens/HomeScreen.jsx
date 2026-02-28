@@ -1,8 +1,34 @@
 import { Calendar, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function HomeScreen() {
     const navigate = useNavigate();
+    const [timeLeft, setTimeLeft] = useState(null);
+
+    useEffect(() => {
+        // Event start date: April 15, 2026, 8:00 AM CDT (UTC-5)
+        const eventDate = new Date('2026-04-15T08:00:00-05:00').getTime();
+
+        const calculateTimeLeft = () => {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                setTimeLeft({ days, hours, minutes });
+            } else {
+                setTimeLeft(null);
+            }
+        };
+
+        calculateTimeLeft();
+        const timer = setInterval(calculateTimeLeft, 60000); // Check every minute
+
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <div className="home-screen">
@@ -36,9 +62,27 @@ export default function HomeScreen() {
 
                     <div className="hero-actions flex flex-col w-full gap-4 mt-8">
                         <button className="btn-primary" onClick={() => navigate('/schedule')}>
-                            Show Schedule &rarr;
+                            Event Schedule &rarr;
                         </button>
                     </div>
+
+                    {/* Countdown Timer */}
+                    {timeLeft && (
+                        <div className="mt-10 flex gap-4 drop-shadow-2xl text-light-fixed animate-fade-in">
+                            <div className="flex flex-col items-center bg-black-60 backdrop-blur-md rounded-2xl p-4 min-w-[100px] border border-white border-opacity-30 shadow-2xl">
+                                <span className="text-sm font-bold uppercase tracking-widest mb-1 opacity-90 text-blue">Days</span>
+                                <span className="text-5xl font-black tracking-tight">{timeLeft.days}</span>
+                            </div>
+                            <div className="flex flex-col items-center bg-black-60 backdrop-blur-md rounded-2xl p-4 min-w-[100px] border border-white border-opacity-30 shadow-2xl">
+                                <span className="text-sm font-bold uppercase tracking-widest mb-1 opacity-90 text-blue">Hours</span>
+                                <span className="text-5xl font-black tracking-tight">{timeLeft.hours}</span>
+                            </div>
+                            <div className="flex flex-col items-center bg-black-60 backdrop-blur-md rounded-2xl p-4 min-w-[100px] border border-white border-opacity-30 shadow-2xl">
+                                <span className="text-sm font-bold uppercase tracking-widest mb-1 opacity-90 text-blue">Mins</span>
+                                <span className="text-5xl font-black tracking-tight">{timeLeft.minutes}</span>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
