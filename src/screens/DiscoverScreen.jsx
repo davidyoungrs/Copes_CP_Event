@@ -345,6 +345,8 @@ export default function DiscoverScreen() {
                             setActiveTab(tab);
                             if (tab !== 'All') setViewAllEat(false);
                             window.scrollTo(0, 0);
+                            const contentArea = document.querySelector('.content-area');
+                            if (contentArea) contentArea.scrollTo(0, 0);
                         }}
                         className={`flex-shrink-0 text-sm font-medium pb-2 ${activeTab === tab ? 'text-blue border-b-2 border-blue' : 'text-gray'}`}
                     >
@@ -367,42 +369,44 @@ export default function DiscoverScreen() {
                         {shouldShowFullEatList ? (
                             <div className="grid grid-cols-2 gap-4 pb-4">
                                 {displayEatList.map((place, idx) => (
-                                    <div key={idx} className="place-card">
-                                        <div className="relative h-32 rounded-xl overflow-hidden mb-2 group">
+                                    <div key={idx} className="place-card rounded-2xl bg-white shadow-sm p-2">
+                                        <div className="relative h-32 w-full overflow-hidden rounded-xl mb-2 group">
                                             <a href={place.url || `https://www.google.com/search?q=${encodeURIComponent(place.title + " restaurant Houston")}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
                                                 <img src={place.image} alt={place.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                             </a>
-
                                         </div>
-                                        <div className="flex justify-between items-start mb-1">
-                                            <h3 className="text-sm text-white font-semibold leading-tight line-clamp-1">{place.title}</h3>
+                                        <div className="px-1 pb-1">
+                                            <div className="flex justify-between items-start mb-1">
+                                                <h3 className="text-sm text-slate-900 font-semibold leading-tight line-clamp-1">{place.title}</h3>
+                                            </div>
+                                            <div className="flex gap-2 mb-1">
+                                                <span className="bg-surface-hover text-blue text-[10px] font-bold px-1.5 py-0.5 rounded inline-block">{place.price}</span>
+                                                {place.halal && <span className="bg-[#2ecc71] bg-opacity-20 text-[#2ecc71] text-[10px] font-bold px-1.5 py-0.5 rounded inline-block">HALAL</span>}
+                                            </div>
+                                            <p className="text-xs text-slate-500 line-clamp-2">{place.desc}</p>
                                         </div>
-                                        <div className="flex gap-2 mb-1">
-                                            <span className="bg-surface-hover text-blue text-[10px] font-bold px-1.5 py-0.5 rounded inline-block">{place.price}</span>
-                                            {place.halal && <span className="bg-[#2ecc71] bg-opacity-20 text-[#2ecc71] text-[10px] font-bold px-1.5 py-0.5 rounded inline-block">HALAL</span>}
-                                        </div>
-                                        <p className="text-xs text-gray line-clamp-2">{place.desc}</p>
                                     </div>
                                 ))}
                             </div>
                         ) : (
                             <div className="places-horizontal-list flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 sticky-scroll">
                                 {displayEatList.map((place, idx) => (
-                                    <div key={idx} className="place-card flex-shrink-0 w-64">
-                                        <div className="relative h-36 rounded-xl overflow-hidden mb-3 group">
+                                    <div key={idx} className="place-card flex-shrink-0 w-64 rounded-2xl bg-white shadow-sm p-2">
+                                        <div className="relative h-36 w-full overflow-hidden rounded-xl mb-3 group">
                                             <a href={place.url || `https://www.google.com/search?q=${encodeURIComponent(place.title + " restaurant Houston")}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
                                                 <img src={place.image} alt={place.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                             </a>
-
                                         </div>
-                                        <div className="flex justify-between items-start">
-                                            <h3 className="text-base text-white font-semibold">{place.title}</h3>
-                                            <div className="flex gap-2">
-                                                <span className="bg-surface-hover text-blue text-xs font-bold px-2 py-1 rounded">{place.price}</span>
-                                                {place.halal && <span className="bg-[#2ecc71] bg-opacity-20 text-[#2ecc71] text-xs font-bold px-2 py-1 rounded">HALAL</span>}
+                                        <div className="px-2 pb-2">
+                                            <div className="flex justify-between items-start">
+                                                <h3 className="text-base text-slate-900 font-semibold line-clamp-1">{place.title}</h3>
+                                                <div className="flex gap-2">
+                                                    <span className="bg-surface-hover text-blue text-xs font-bold px-2 py-1 rounded">{place.price}</span>
+                                                    {place.halal && <span className="bg-[#2ecc71] bg-opacity-20 text-[#2ecc71] text-xs font-bold px-2 py-1 rounded">HALAL</span>}
+                                                </div>
                                             </div>
+                                            <p className="text-sm text-slate-500 mt-1 line-clamp-2">{place.desc}</p>
                                         </div>
-                                        <p className="text-sm text-gray mt-1">{place.desc}</p>
                                     </div>
                                 ))}
                             </div>
@@ -418,14 +422,14 @@ export default function DiscoverScreen() {
                         </div>
 
                         <a href="https://spacecenter.org/" target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
-                            <div className="must-see-card relative h-40 rounded-xl overflow-hidden mb-8 group bg-black">
-                                <img src="/space shuttle.jpg" alt="Space Center" className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <div className="must-see-card relative h-40 rounded-2xl overflow-hidden mb-8 group bg-black">
+                                <img src="/space shuttle.jpg" alt="Space Center" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-full opacity-60"></div>
                                 <div className="absolute top-4 left-4 z-10">
                                     <span className="bg-blue text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">$$</span>
                                 </div>
-                                <div className="absolute inset-0 p-4 pt-10 flex flex-col justify-start">
-                                    <h3 className="text-2xl text-white font-bold mb-2">Space Center Houston</h3>
+                                <div className="absolute inset-0 p-4 pt-10 flex flex-col justify-end pb-4">
+                                    <h3 className="text-2xl text-white font-bold mb-1">Space Center Houston</h3>
                                     <p className="text-sm text-gray">Journey to the stars at the home of NASA Johnson Space Center.</p>
                                 </div>
                             </div>
@@ -437,12 +441,14 @@ export default function DiscoverScreen() {
 
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             {thingsToDo.map((thing, idx) => (
-                                <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                    <div className={`rounded-xl overflow-hidden mb-2 ${['Museum District', 'Buffalo Bayou Park', 'Houston Museum of Natural Science', 'Museum of Fine Arts'].includes(thing.title) ? 'h-32 bg-[#1a1a1a]' : 'h-32'}`}>
-                                        <img src={thing.image} alt={thing.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['Museum District', 'The Galleria', 'Downtown Aquarium', 'Buffalo Bayou Park', 'Houston Museum of Natural Science', 'Museum of Fine Arts'].includes(thing.title) ? 'object-contain' : 'object-cover'}`} />
+                                <a key={idx} href={thing.url} target="_blank" rel="noopener noreferrer" className="thing-card block group rounded-2xl bg-white shadow-sm p-2">
+                                    <div className="h-32 w-full overflow-hidden rounded-xl mb-2">
+                                        <img src={thing.image} alt={thing.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                     </div>
-                                    <h4 className="text-sm text-white font-semibold leading-tight mb-1">{thing.title}</h4>
-                                    <p className="text-xs text-gray">{thing.desc}</p>
+                                    <div className="px-1 pb-1">
+                                        <h4 className="text-sm text-slate-900 font-semibold leading-tight mb-1">{thing.title}</h4>
+                                        <p className="text-xs text-slate-500">{thing.desc}</p>
+                                    </div>
                                 </a>
                             ))}
                         </div>
@@ -458,13 +464,14 @@ export default function DiscoverScreen() {
                         <div className="grid grid-cols-2 gap-4 pb-4">
                             {shopping.map((shop, idx) => (
                                 <a key={idx} href={shop.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
-                                    <div className="place-card">
-                                        <div className="relative h-32 rounded-xl overflow-hidden mb-2 group">
-                                            <img src={shop.image} alt={shop.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${['The Galleria', 'River Oaks District', 'Katy Mills'].includes(shop.title) ? 'object-contain' : 'object-cover'}`} />
-
+                                    <div className="place-card rounded-2xl bg-white shadow-sm p-2">
+                                        <div className="relative h-32 w-full overflow-hidden rounded-xl mb-2 group">
+                                            <img src={shop.image} alt={shop.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                         </div>
-                                        <h3 className="text-sm text-white font-semibold leading-tight line-clamp-1 mb-1">{shop.title}</h3>
-                                        <p className="text-xs text-gray line-clamp-2">{shop.desc}</p>
+                                        <div className="px-1 pb-1">
+                                            <h3 className="text-sm text-slate-900 font-semibold leading-tight line-clamp-1 mb-1">{shop.title}</h3>
+                                            <p className="text-xs text-slate-500 line-clamp-2">{shop.desc}</p>
+                                        </div>
                                     </div>
                                 </a>
                             ))}
@@ -482,15 +489,17 @@ export default function DiscoverScreen() {
                             </div>
                             <div className="grid grid-cols-2 gap-4 mb-8">
                                 {nightlife.map((spot, idx) => (
-                                    <a key={idx} href={spot.url} target="_blank" rel="noopener noreferrer" className="thing-card block group">
-                                        <div className="h-32 rounded-xl overflow-hidden mb-2 relative">
-                                            <img src={spot.image} alt={spot.title} className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${spot.title.includes('Museum of Natural Science') ? 'object-contain bg-surface-hover' : 'object-cover'}`} />
+                                    <a key={idx} href={spot.url} target="_blank" rel="noopener noreferrer" className="thing-card block group rounded-2xl bg-white shadow-sm p-2">
+                                        <div className="h-32 w-full overflow-hidden rounded-xl mb-2 relative">
+                                            <img src={spot.image} alt={spot.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                                             <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-blue text-[10px] font-bold px-1.5 py-0.5 rounded">
                                                 {spot.price}
                                             </div>
                                         </div>
-                                        <h4 className="text-sm text-white font-semibold leading-tight mb-1">{spot.title}</h4>
-                                        <p className="text-xs text-gray">{spot.desc}</p>
+                                        <div className="px-1 pb-1">
+                                            <h4 className="text-sm text-slate-900 font-semibold leading-tight mb-1">{spot.title}</h4>
+                                            <p className="text-xs text-slate-500">{spot.desc}</p>
+                                        </div>
                                     </a>
                                 ))}
                             </div>

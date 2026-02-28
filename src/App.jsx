@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import BottomNav from './components/BottomNav';
+import ScrollToTop from './components/ScrollToTop';
 import HomeScreen from './screens/HomeScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import DiscoverScreen from './screens/DiscoverScreen';
@@ -9,6 +10,7 @@ import InfoScreen from './screens/InfoScreen';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app-container">
         <Header />
         <main className="content-area">

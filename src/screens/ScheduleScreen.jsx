@@ -37,6 +37,8 @@ export default function ScheduleScreen() {
                         onClick={() => {
                             setActiveTab(day);
                             window.scrollTo(0, 0);
+                            const contentArea = document.querySelector('.content-area');
+                            if (contentArea) contentArea.scrollTo(0, 0);
                         }}
                         className={`day-tab flex-1 py-3 text-center transition-all ${activeTab === day ? 'active' : ''}`}
                     >
